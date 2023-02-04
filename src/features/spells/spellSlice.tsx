@@ -40,14 +40,14 @@ interface InitialStateType{
     spells:SpellsType[],
     isLoading:boolean,
     spell:SpellType|null,
-    favorites?:SpellType[]
+    favorite?:SpellType[]
 }
 
 const initialState:InitialStateType={
     spells:[],
     isLoading:true,
     spell:null,
-    favorites:[]
+    favorite:[]
 }
 export interface formType{
     letter?:string,
@@ -83,7 +83,16 @@ const spellSlice=createSlice({
     name:'spells',
     initialState,
     reducers:{
-
+        addFavorite:(state,action)=>{
+            const newSpell=action.payload
+            const existingSpell=state.favorite?.find((spell:SpellType)=>spell.index===newSpell.index)
+            if(!existingSpell){
+                state.favorite?.push(newSpell)
+            }else{
+                state.favorite=state.favorite?.filter((spell:SpellType)=>spell.index!==newSpell.index)
+            }
+            
+        }
     },
     extraReducers(builder){
         builder.addCase(getAllSpells.pending, (state)=>{
@@ -109,5 +118,7 @@ const spellSlice=createSlice({
 
     }
 })
+
+export const {addFavorite} = spellSlice.actions
 
 export default spellSlice.reducer
