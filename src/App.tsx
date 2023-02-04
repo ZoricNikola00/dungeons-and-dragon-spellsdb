@@ -2,6 +2,7 @@ import {Route,Routes} from 'react-router-dom'
 import Background from './components/Background'
 import Home from './components/Home'
 import { Navbar } from './components/Navbar'
+import Spell from './features/spells/Spell'
 import Spells from './features/spells/Spells'
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/spells' element={<Spells/>}/>
+        <Route path='/spells/:id' element={<Spell/>}/>
       </Routes>
     </main>
   )
