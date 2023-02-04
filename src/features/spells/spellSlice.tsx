@@ -39,11 +39,11 @@ interface SpellType{
 interface InitialStateType{
     spells:SpellsType[],
     isLoading:boolean,
-    spell:any,
-    faovites:SpellType[]
+    spell:SpellType|{},
+    favorites?:SpellType[]
 }
 
-const initialState={
+const initialState:InitialStateType={
     spells:[],
     isLoading:true,
     spell:{},
