@@ -85,6 +85,29 @@ const spellSlice=createSlice({
     reducers:{
 
     },
+    extraReducers(builder){
+        builder.addCase(getAllSpells.pending, (state)=>{
+            state.isLoading=true
+        });
+        builder.addCase(getAllSpells.fulfilled, (state, action)=>{
+            state.isLoading=false
+            state.spells=action.payload
+        });
+        builder.addCase(getAllSpells.rejected, (state)=>{
+            state.isLoading=false
+        });
+        builder.addCase(getSpell.pending, (state)=>{
+            state.isLoading=true
+        });
+        builder.addCase(getSpell.fulfilled, (state,action)=>{
+            state.isLoading=false
+            state.spell=action.payload
+        });
+        builder.addCase(getSpell.rejected, (state)=>{
+            state.isLoading=false
+        });
+
+    }
 })
 
 export default spellSlice.reducer
