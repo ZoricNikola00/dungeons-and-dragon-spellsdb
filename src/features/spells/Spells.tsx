@@ -32,7 +32,7 @@ const Spells = () => {
             {letters.map((lett,i)=><div key={i} onClick={()=>{setQuery('');setLetter(lett);setHeader(lett==='#'?'All spells':`All spells on letter: ${lett}`)}} className='text-lg py-1 px-2 rounded font-bold transition duration-300 cursor-pointer hover:bg-[#666633]/60'>{lett}</div>)}
         </div>
         <form onSubmit={handleSubmit} className='w-[200px] mx-auto relative'>
-            <input placeholder='Search for spell...' className='w-full p-2 outline-none rounded bg-[#666633]/60 text-white' type='text' />
+            <input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder='Search for spell...' className='w-full p-2 outline-none rounded bg-[#666633]/60 text-white' type='text' />
             <button type='submit' className='text-white absolute translate-y-[-50%] top-[50%] right-1'><FaSearch /></button>
         </form>
         <h1 className='text-center text-white text-4xl my-[20px]'>{header}</h1>
