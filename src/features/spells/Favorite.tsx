@@ -10,11 +10,19 @@ const Favorite = () => {
   const nav=useNavigate()
   
   if(favorite?.length===0){
-    return <div className='text-white text-center text-5xl'>You don't have any favorite spell!</div>
+    return (
+    <div className='text-center text-white'>
+      <h1 className='text-5xl my-[40px]'>You don't have any favorite spell!</h1>
+      <button className='text-2xl border border-[#666633] transition duration-500 hover:bg-white hover:text-[#666633] bg-[#666633] p-4 tracking-wider rounded-lg' onClick={()=>nav('/spells')}>Check the spells</button>
+    </div>
+    )
   }
   return (
     <div className='w-[90%] md:w-[80%] mx-auto text-white'>
-      <h1 className='text-4xl font-bold'>My Favorite Spells</h1>
+      <div className='flex items-center justify-between'>
+        <h1 className='text-4xl font-bold'>My Favorite Spells</h1>
+        <button className='text-lg px-2 border border-[#666633] transition duration-500 hover:bg-white hover:text-[#666633] bg-[#666633] py-1 tracking-wider rounded-lg' onClick={()=>nav('/spells')}>Check other spells</button>
+      </div>
       <div className='grid w-full grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 p-4 mt-6'>
         <div className='col-span-1'>Level: </div>
         <div className='col-span-2'>Name: </div>
@@ -33,7 +41,7 @@ const Favorite = () => {
           <div className='col-span-1 hidden md:block'>{spell.range}</div>
           <div className='col-span-1 hidden lg:block'>{spell.attack_type || '/'}</div>
           <div className='col-span-1 hidden xl:block'>{spell?.damage?.damage_type.name || '/'}</div>
-          <button onClick={()=>dispatch(addFavorite(favorite.find(fav=>fav.index===spell.index)))} className='absolute text-3xl right-[20px] z-30 hover:text-[#666633] duration-500 transition'><TiTimes/></button>
+          <button onClick={()=>dispatch(addFavorite(favorite.find(fav=>fav.index===spell.index)))} className='absolute text-3xl right-[20px] z-30 hover:text-red-500 duration-500 transition'><TiTimes/></button>
           <button onClick={()=>nav(`/spells/${spell.index}`)} className='absolute text-3xl right-[60px] z-30 hover:text-[#666633] transition duration-500'><GiScrollUnfurled/></button>
         </div>
       ))}
