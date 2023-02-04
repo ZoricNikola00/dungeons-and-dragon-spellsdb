@@ -26,27 +26,27 @@ interface SpellType{
     casting_time:string,
     level:number,
     attack_type:string,
-    school:SpellType,
+    school:SpellsType,
     dc?:{
-        dc_type:SpellType,
+        dc_type:SpellsType,
         dc_success:string
     }
     damage?:any,
-    classes:SpellType[],
-    subclasses:SpellType[],
+    classes:SpellsType[],
+    subclasses:SpellsType[],
     url:string}
 
 interface InitialStateType{
     spells:SpellsType[],
     isLoading:boolean,
-    spell:SpellType|{},
+    spell:SpellType|null,
     favorites?:SpellType[]
 }
 
 const initialState:InitialStateType={
     spells:[],
     isLoading:true,
-    spell:{},
+    spell:null,
     favorites:[]
 }
 export interface formType{
