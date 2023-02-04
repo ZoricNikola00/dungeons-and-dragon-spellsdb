@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/spellHooks'
-import { getSpell } from './spellSlice'
+import { addFavorite, getSpell } from './spellSlice'
 import { RingLoader } from 'react-spinners'
 import {FaHeart} from 'react-icons/fa'
 import {ImArrowLeft} from 'react-icons/im'
@@ -9,9 +9,10 @@ import {useNavigate} from 'react-router-dom'
 
 const Spell = () => {
     const {id}=useParams()
-    const {spell,isLoading, favorites}=useAppSelector(state=>state.spells)
+    const {spell,isLoading, favorite}=useAppSelector(state=>state.spells)
     const dispatch=useAppDispatch()
     const nav=useNavigate()
+    const checkFavorite=favorite?.some(favorite=>favorite.index===spell?.index)
     const styledItem={div:'col-span-1 border border-white p-1 rounded', span:'text-sm text-gray-300',br:'block md:hidden'}
     useEffect(()=>{
         dispatch(getSpell(id))
@@ -25,7 +26,7 @@ const Spell = () => {
         <button onClick={()=>nav('/spells')} className='flex items-center gap-2 text-lg text-gray-300 italic p-2 border border-transparent rounded transition duration-300 hover:border-gray-300'><ImArrowLeft/> Back</button>
         <div className='flex items-center justify-between text-4xl py-2'>
             <h1 className='font-bold'>{spell?.name}</h1>
-            <button><FaHeart/></button>
+            <button onClick={_=>dispatch(addFavorite(spell))}><FaHeart className={`${checkFavorite?'text-[#666633]':'text-white/30'} transition duration-500`}/></button>
         </div>
         <hr/>
         <div className='text-sm md:text-lg grid grid-cols-2 md:grid-cols-4 p-4 gap-2'>
