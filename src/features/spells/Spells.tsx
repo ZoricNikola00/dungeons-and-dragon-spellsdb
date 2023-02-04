@@ -38,7 +38,7 @@ const Spells = () => {
         <h1 className='text-center text-white text-4xl my-[20px]'>{header}</h1>
         <div className='flex flex-wrap justify-center gap-4 w-full my-10'>
             {spells.map((spell)=>(
-                <div key={spell.index} className='text-white font-semibold cursor-pointer hover:scale-110 tranisiton duration-500 bg-green-300/30 rounded-xl p-4'>
+                <div key={spell.index} onClick={()=>nav(`/spells/${spell.index}`)} className='text-white font-semibold cursor-pointer hover:scale-110 tranisiton duration-500 bg-green-300/30 rounded-xl p-4'>
                     {spell.name}
                 </div>
             ))}
