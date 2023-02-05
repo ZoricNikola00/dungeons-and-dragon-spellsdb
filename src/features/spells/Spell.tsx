@@ -35,7 +35,7 @@ const Spell = () => {
             <div className={styledItem.div}><span className={styledItem.span}>Range: </span><br className={styledItem.br}/>{spell?.range||'/'}</div>
             <div className={styledItem.div}><span className={styledItem.span}>Classes: </span><br className={styledItem.br}/>{spell?.classes.map(clas=><span key={clas.index} className='mr-1'>{clas.name}</span>)}</div>
             <div className={styledItem.div}><span className={styledItem.span}>Casting Time: </span><br className={styledItem.br}/>{spell?.casting_time}</div>
-            <div className={styledItem.div}><span className={styledItem.span}>Concetration: </span><br className={styledItem.br}/>{spell?.concetration?"NO":"YES"}</div>
+            <div className={styledItem.div}><span className={styledItem.span}>Concentration: </span><br className={styledItem.br}/>{spell?.concentration?"NO":"YES"}</div>
             <div className={styledItem.div}><span className={styledItem.span}>Duration: </span><br className={styledItem.br}/>{spell?.duration}</div>
             <div className={styledItem.div}><span className={styledItem.span}>Type of attack: </span><br className={styledItem.br}/>{spell?.attack_type|| '/'}</div>
             <div className={styledItem.div}><span className={styledItem.span}>Material: </span><br className={styledItem.br}/>{spell?.material || '/'}</div>
