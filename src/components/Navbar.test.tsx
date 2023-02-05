@@ -39,7 +39,7 @@ describe('Navbar component', () => {
 
     const {getByTestId} = render(<Navbar />)
 
-    const icon = getByTestId('scroll')
+    const icon = getByTestId('icon')
 
     fireEvent.click(icon)
 
