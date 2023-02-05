@@ -48,7 +48,11 @@ const Spells = () => {
   return (
     <div className='w-[90%] md:w-[80%] mx-auto mt-[100px]'>
         <div className='my-[20px] flex flex-wrap justify-center w-full text-white'>
-            {letters.map((lett,i)=><div key={i} onClick={()=>letterClick(lett)} className='text-lg py-1 px-2 rounded font-bold transition duration-300 cursor-pointer hover:bg-[#666633]/60'>{lett}</div>)}
+            {letters.map((lett,i)=>(
+                <div key={i} onClick={()=>letterClick(lett)} className='text-lg py-1 px-2 rounded font-bold transition duration-300 cursor-pointer hover:bg-[#666633]/60'>
+                    {lett}
+                </div>
+            ))}
         </div>
         <form onSubmit={handleSubmit} className='w-[200px] mx-auto relative'>
             <input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder='Search for spell...' className='w-full p-2 outline-none rounded bg-[#666633]/60 text-white' type='text' />

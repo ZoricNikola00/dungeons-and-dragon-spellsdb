@@ -47,13 +47,21 @@ const Spell = () => {
         <div className='p-1'>
             <h1 className='font-semibold'>Description: </h1>
             <div className='p-2'>
-                {spell?.desc.map((des,i)=><p key={i} className='mb-3'>{des}</p>)}
+                {spell?.desc.map((des,i)=>(
+                    <p key={i} className='mb-3'>
+                        {des}
+                    </p>
+                ))}
             </div>
         </div>
         <div className={`${spell?.higher_level?.length?'block':'hidden'} p-1`}>
             <h1 className='font-semibold'>Higher level description: </h1>
             <div className='p-2'>
-                {spell?.higher_level?.map((des,i)=><p key={i}>{des}</p>)}
+                {spell?.higher_level?.map((des,i)=>(
+                    <p key={i}>
+                        {des}
+                    </p>
+                ))}
             </div>
         </div>
     </div>
