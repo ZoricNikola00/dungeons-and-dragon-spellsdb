@@ -22,7 +22,7 @@ interface SpellType{
     }
     ritual:boolean,
     duration:string,
-    concetration:boolean,
+    concentration:boolean,
     casting_time:string,
     level:number,
     attack_type:string,
@@ -40,7 +40,7 @@ interface InitialStateType{
     spells:SpellsType[],
     isLoading:boolean,
     spell:SpellType|null,
-    favorite?:SpellType[]
+    favorite:SpellType[]
 }
 
 const initialState:InitialStateType={
@@ -84,10 +84,10 @@ const spellSlice=createSlice({
     initialState,
     reducers:{
         addFavorite:(state,action)=>{
-            const newSpell=action.payload
+            const newSpell:SpellType=action.payload
             const existingSpell=state.favorite?.find((spell:SpellType)=>spell.index===newSpell.index)
             if(!existingSpell){
-                state.favorite?.push(newSpell)
+                state.favorite.push(newSpell)
             }else{
                 state.favorite=state.favorite?.filter((spell:SpellType)=>spell.index!==newSpell.index)
             }
