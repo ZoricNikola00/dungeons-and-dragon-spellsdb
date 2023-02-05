@@ -1,5 +1,5 @@
 import spellSlice, { addFavorite } from './spellSlice';
-
+import reducer,{getAllSpells, getSpell} from './spellSlice'
 
 describe('addFavorite', () => {
   it('should add a spell to the favorite list', () => {
@@ -95,3 +95,59 @@ describe('addFavorite', () => {
   });
 })
 
+describe('slices', ()=>{
+  const initialState={spells:[],
+      isLoading:true,
+      spell:null,
+      favorite:[]}
+it('set loading true when is getAllSpells pending', ()=>{
+  const action={type:getAllSpells.pending.type}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[],
+      isLoading:true,
+      spell:null,
+      favorite:[]})
+})
+it('set loading false when is getAllSpells fullfiled', ()=>{
+  const action={type:getAllSpells.fulfilled.type, payload:[{index:'Spell',name:'Spell-Name',url:'spell/index'}]}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[{index:'Spell',name:'Spell-Name',url:'spell/index'}],
+      isLoading:false,
+      spell:null,
+      favorite:[]})
+}),
+it('set loading false when is getAllSpells rejected', ()=>{
+  const action={type:getAllSpells.rejected.type, payload:{error:'some-error'}}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[],
+      isLoading:false,
+      spell:null,
+      favorite:[]})
+})
+
+it('set loading true when is getSpell pending', ()=>{
+  const action={type:getSpell.pending.type}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[],
+      isLoading:true,
+      spell:null,
+      favorite:[]})
+})
+it('set loading false when is getSpell fullfiled', ()=>{
+  const action={type:getSpell.fulfilled.type, payload:{index:'Spell',name:'Spell-Name',url:'spell/index'}}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[],
+      isLoading:false,
+      spell:{index:'Spell',name:'Spell-Name',url:'spell/index'},
+      favorite:[]})
+}),
+it('set loading false when is getSpell rejected', ()=>{
+  const action={type:getSpell.rejected.type, payload:{error:'some-error'}}
+  const state=reducer(initialState,action);
+  expect(state).toEqual({spells:[],
+      isLoading:false,
+      spell:null,
+      favorite:[]})
+})
+
+})
