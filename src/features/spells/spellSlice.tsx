@@ -48,7 +48,7 @@ const initialState:InitialStateType={
     spells:[],
     isLoading:true,
     spell:null,
-    favorite:[]
+    favorite:localStorage.getItem('favorite')!==undefined?JSON.parse(localStorage.getItem('favorite')|| '[]'):[]
 }
 export interface formType{
     letter?:string,
@@ -93,6 +93,7 @@ const spellSlice=createSlice({
             }else{
                 state.favorite=state.favorite?.filter((spell:SpellType)=>spell.index!==newSpell.index)
             }
+            localStorage.setItem('favorite',JSON.stringify(state.favorite))
 
         }
     },
