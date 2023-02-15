@@ -8,42 +8,44 @@ import Pagination from '../../components/Pagination'
 const letters=['#','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'Z']
 
 const Spells = () => {
-    const [letter, setLetter]=useState('#')
+    const [letter, setLetter]=useState('')
     const [query, setQuery]=useState('')
+    const [searchWord,setSearchWord]=useState('')
     const [header, setHeader]=useState('All Spells')
     const [currentPage, setCurrentPage]=useState(1)
-    const [spellsPerPage,setSpellsPerPage]=useState(50)
+    const spellsPerPage=50
 
     const nav=useNavigate()
     const {spells, isLoading}=useAppSelector(state=>state.spells)
     const dispatch=useAppDispatch()
 
     useEffect(()=>{
-        dispatch(getAllSpells({letter,query}))
+        dispatch(getAllSpells())
     },[letter])
+    
 
     const handleSubmit=(e:React.FormEvent)=>{
         e.preventDefault()
-        setLetter('#')
+        setLetter('')
+        setSearchWord(query)
         setCurrentPage(1)
-        dispatch(getAllSpells({letter,query}))
         setHeader(`Your search word was: ${query}`)
     }
 
     const letterClick=(letter:string)=>{
         setQuery('');
         setLetter(letter);
-        setHeader(letter==='#'?'All spells':`All spells on letter: ${letter}`);
+        setHeader(letter==='#'?'All Spells':`All spells on letter: ${letter}`);
         setCurrentPage(1)
     }
 
     if(isLoading){
         return <RingLoader color='#666633' size={150} className='my-[200px] w-[full] mx-auto'/>
     }
-
+    const formatSpells=(letter?(letter==='#'?spells:spells.filter((item)=>item.name[0]===letter)):spells.filter((spell)=>spell.name.toLowerCase().includes(searchWord.toLowerCase())))
     const indexOfLastSpell = currentPage*spellsPerPage
     const indexOfFirstSpell = indexOfLastSpell - spellsPerPage
-    const currentSpells = spells.slice(indexOfFirstSpell, indexOfLastSpell)
+    const currentSpells = formatSpells.slice(indexOfFirstSpell, indexOfLastSpell)
 
   return (
     <div className='w-[90%] md:w-[80%] mx-auto mt-[100px]'>
@@ -66,7 +68,7 @@ const Spells = () => {
                 </div>
             ))}
         </div>
-        <Pagination spellsPerPage={spellsPerPage} totalSpells={spells.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+        <Pagination spellsPerPage={spellsPerPage} totalSpells={formatSpells.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </div>
   )
 }

@@ -34,7 +34,8 @@ interface SpellType{
     damage?:any,
     classes:SpellsType[],
     subclasses:SpellsType[],
-    url:string}
+    url:string
+}
 
 interface InitialStateType{
     spells:SpellsType[],
@@ -53,27 +54,28 @@ export interface formType{
     letter?:string,
     query:string
 }
-export const getAllSpells=createAsyncThunk('spells/getAll', async({letter, query}:formType)=>{
+export const getAllSpells=createAsyncThunk('spells/getAll', async(_,{getState}:any)=>{
+    let data=getState().spells.spells
     try{
-        const res = await axios(url)
-        const data=res.data.results
-        return (
-        letter!=='#'?data.filter((item:SpellsType)=>item.name[0]===letter)
-        : 
-        query ? data.filter((item:SpellsType)=>item.name.toLowerCase().includes(query.toLowerCase()))
-        :
-        data
-        )
+        if(data.length<1){
+            const res = await axios(url)
+            data=res.data.results
+        }
+        return data
     }
     catch(err){
         console.log(err)
     }
 })
 
-export const getSpell=createAsyncThunk('spells/single',async (id:string|undefined) => {
+export const getSpell=createAsyncThunk('spells/single',async (id:string|undefined, {getState}:any) => {
+    let data=getState().spells.spell
     try{
-        const res = await axios(url+id)
-        return res.data
+        if(!data || data.index!==id){
+            const res = await axios(url+id)
+            data=res.data
+        }
+        return data
     }catch(err){
         console.log(err)
     }
@@ -91,7 +93,7 @@ const spellSlice=createSlice({
             }else{
                 state.favorite=state.favorite?.filter((spell:SpellType)=>spell.index!==newSpell.index)
             }
-            
+
         }
     },
     extraReducers(builder){
