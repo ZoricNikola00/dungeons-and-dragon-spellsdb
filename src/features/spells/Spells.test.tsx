@@ -12,7 +12,7 @@ describe('Spells component', () => {
     it('should display loading component',()=>{
         const dispatchMock = jest.fn();
         (useAppDispatch as jest.Mock).mockReturnValue(dispatchMock);
-        const selectorMock = { spells: [{index:'test-spell1', name: 'Test Spell 1', url:'/test-spell1' },{index:'test-spell2', name: 'Test Spell 2', url:'/test-spell2' }], isLoading: true };
+        const selectorMock = { spells: [], isLoading: true };
         (useAppSelector as jest.Mock).mockReturnValue(selectorMock);
         renderWithProvider(
             <Spells />
