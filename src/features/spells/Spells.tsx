@@ -40,17 +40,17 @@ const Spells = () => {
     }
 
     if(isLoading){
-        return <RingLoader color='#666633' size={150} className='my-[200px] w-[full] mx-auto'/>
+        return <RingLoader data-testid='loader' color='#666633' size={150} className='my-[200px] w-[full] mx-auto'/>
     }
-    const formatSpells=(letter?(letter==='#'?spells:spells.filter((item)=>item.name[0]===letter)):spells.filter((spell)=>spell.name.toLowerCase().includes(searchWord.toLowerCase())))
+    const formatSpells=(letter?(letter==='#'?spells:spells?.filter((item)=>item.name[0]===letter)):spells?.filter((spell)=>spell.name.toLowerCase().includes(searchWord.toLowerCase())))
     const indexOfLastSpell = currentPage*spellsPerPage
     const indexOfFirstSpell = indexOfLastSpell - spellsPerPage
-    const currentSpells = formatSpells.slice(indexOfFirstSpell, indexOfLastSpell)
+    const currentSpells = formatSpells?.slice(indexOfFirstSpell, indexOfLastSpell)
 
   return (
     <div className='w-[90%] md:w-[80%] mx-auto mt-[100px]'>
         <div className='my-[20px] flex flex-wrap justify-center w-full text-white'>
-            {letters.map((lett,i)=>(
+            {letters?.map((lett,i)=>(
                 <div key={i} onClick={()=>letterClick(lett)} className='text-lg py-1 px-2 rounded font-bold transition duration-300 cursor-pointer hover:bg-[#666633]/60'>
                     {lett}
                 </div>
@@ -60,15 +60,15 @@ const Spells = () => {
             <input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder='Search for spell...' className='w-full p-2 outline-none rounded bg-[#666633]/60 text-white' type='text' />
             <button type='submit' className='text-white absolute translate-y-[-50%] top-[50%] right-1'><FaSearch /></button>
         </form>
-        <h1 className='text-center text-white text-4xl my-[20px]'>{header}</h1>
-        <div className='flex flex-wrap justify-center gap-4 w-full my-10'>
-            {currentSpells.map((spell)=>(
+        <h1 data-testid='head' className='text-center text-white text-4xl my-[20px]'>{header}</h1>
+        <div data-testid='spells' className='flex flex-wrap justify-center gap-4 w-full my-10'>
+            {currentSpells?.map((spell)=>(
                 <div key={spell.index} onClick={()=>nav(`/spells/${spell.index}`)} className='text-white font-semibold cursor-pointer hover:scale-110 tranisiton duration-500 bg-green-300/30 rounded-lg p-4'>
                     {spell.name}
                 </div>
             ))}
         </div>
-        <Pagination spellsPerPage={spellsPerPage} totalSpells={formatSpells.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+        <Pagination spellsPerPage={spellsPerPage} totalSpells={formatSpells?.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </div>
   )
 }
