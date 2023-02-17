@@ -49,8 +49,7 @@
       "src/**/*.d.ts"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "identity-obj-proxy",
-      "\\.(avif)$": "identity-obj-proxy"
+      "\\.(css|less)$": "identity-obj-proxy"
     }
   }
 }
