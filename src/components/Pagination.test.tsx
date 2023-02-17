@@ -17,9 +17,18 @@ describe('Pagination component', () => {
         setCurrentPage={setCurrentPage}
       />
     )
+    const firstPageBtn=getByText('1')
     const secondPageBtn = getByText('2')
+    const thirdPageBtn=getByText('3')
 
     fireEvent.click(secondPageBtn)
     expect(setCurrentPage).toHaveBeenCalledWith(2)
+
+    fireEvent.click(firstPageBtn)
+    expect(setCurrentPage).toHaveBeenCalledWith(1)
+
+    fireEvent.click(thirdPageBtn)
+    expect(setCurrentPage).toHaveBeenCalledWith(3)
+
   })
 })
