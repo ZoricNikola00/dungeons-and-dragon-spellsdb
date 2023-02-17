@@ -1,3 +1,4 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/spellHooks'
 import {TiTimes} from 'react-icons/ti'
@@ -41,7 +42,7 @@ const Favorite = () => {
           <div className='col-span-1 hidden md:block'>{spell.range}</div>
           <div className='col-span-1 hidden lg:block'>{spell.attack_type || '/'}</div>
           <div className='col-span-1 hidden xl:block'>{spell?.damage?.damage_type.name || '/'}</div>
-          <button onClick={()=>dispatch(addFavorite(favorite.find(fav=>fav.index===spell.index)))} className='absolute text-3xl right-[20px] z-30 hover:text-red-500 duration-500 transition'><TiTimes/></button>
+          <button data-testid='remove' onClick={()=>dispatch(addFavorite(favorite.find(fav=>fav.index===spell.index)))} className='absolute text-3xl right-[20px] z-30 hover:text-red-500 duration-500 transition'><TiTimes/></button>
           <button onClick={()=>nav(`/spells/${spell.index}`)} className='absolute text-3xl right-[60px] z-30 hover:text-[#666633] transition duration-500'><GiScrollUnfurled/></button>
         </div>
       ))}
