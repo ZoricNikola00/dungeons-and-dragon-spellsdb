@@ -1,7 +1,7 @@
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
-import {Navbar} from './Navbar'
-import {useNavigate} from 'react-router-dom'
+import { render, fireEvent } from '@testing-library/react'
+import { Navbar } from './Navbar'
+import { useNavigate } from 'react-router-dom'
 
 jest.mock('react-router-dom', () => {
   return {
@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => {
 
 describe('Navbar component', () => {
   it('should render title and icon', () => {
-    const {getByText, getByTestId} = render(<Navbar />)
+    const { getByText, getByTestId } = render(<Navbar />)
 
     const title = getByText('Dungeons & Dragons SpellsDB')
     const icon = getByTestId('icon')
@@ -24,7 +24,7 @@ describe('Navbar component', () => {
     const navigate = jest.fn()
     ;(useNavigate as jest.Mock).mockReturnValue(navigate)
 
-    const {getByText} = render(<Navbar />)
+    const { getByText } = render(<Navbar />)
 
     const title = getByText('Dungeons & Dragons SpellsDB')
 
@@ -37,7 +37,7 @@ describe('Navbar component', () => {
     const navigate = jest.fn()
     ;(useNavigate as jest.Mock).mockReturnValue(navigate)
 
-    const {getByTestId} = render(<Navbar />)
+    const { getByTestId } = render(<Navbar />)
 
     const icon = getByTestId('icon')
 

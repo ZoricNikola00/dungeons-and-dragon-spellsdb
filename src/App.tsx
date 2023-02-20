@@ -1,4 +1,4 @@
-import {Route,Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Background from './components/Background'
 import Home from './components/Home'
 import { Navbar } from './components/Navbar'
@@ -9,13 +9,13 @@ import Spells from './features/spells/Spells'
 const App = () => {
   return (
     <main className='w-full mt-[100px]'>
-      <Navbar/>
-      <Background/>
+      <Navbar />
+      <Background />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/spells' element={<Spells/>}/>
-        <Route path='/spells/:id' element={<Spell/>}/>
-        <Route path='/favorite' element={<Favorite/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/spells' element={<Spells />} />
+        <Route path='/spells/:id' element={<Spell />} />
+        <Route path='/favorite' element={<Favorite />} />
       </Routes>
     </main>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Pagination from './Pagination'
 
 describe('Pagination component', () => {
@@ -15,11 +15,11 @@ describe('Pagination component', () => {
         totalSpells={totalSpells}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-      />
+      />,
     )
-    const firstPageBtn=getByText('1')
+    const firstPageBtn = getByText('1')
     const secondPageBtn = getByText('2')
-    const thirdPageBtn=getByText('3')
+    const thirdPageBtn = getByText('3')
 
     fireEvent.click(secondPageBtn)
     expect(setCurrentPage).toHaveBeenCalledWith(2)
@@ -29,6 +29,5 @@ describe('Pagination component', () => {
 
     fireEvent.click(thirdPageBtn)
     expect(setCurrentPage).toHaveBeenCalledWith(3)
-
   })
 })
