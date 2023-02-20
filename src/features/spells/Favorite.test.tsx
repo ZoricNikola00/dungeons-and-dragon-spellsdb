@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/spellHooks'
 import { store } from '../../store';
 import { BrowserRouter } from 'react-router-dom';
 import Favorite from './Favorite';
-import { addFavorite } from './spellSlice'
 
 jest.mock('../../hooks/spellHooks');
 
