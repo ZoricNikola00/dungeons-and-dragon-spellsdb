@@ -13,7 +13,7 @@ const Favorite = () => {
   if(favorite?.length===0){
     return (
     <div className='text-center text-white'>
-      <h1 className='text-5xl my-[40px]'>You don't have any favorite spell!</h1>
+      <h1 className='text-5xl my-[40px]'>You don&apos;t have any favorite spell!</h1>
       <button className='text-2xl border border-[#666633] transition duration-500 hover:bg-white hover:text-[#666633] bg-[#666633] p-4 tracking-wider rounded-lg' onClick={()=>nav('/spells')}>Check the spells</button>
     </div>
     )
