@@ -27,7 +27,7 @@ const Spell = () => {
         <button onClick={()=>nav('/spells')} className='flex items-center gap-2 text-lg text-gray-300 italic p-2 border border-transparent rounded transition duration-300 hover:border-gray-300'><ImArrowLeft/> Back</button>
         <div className='flex items-center justify-between text-4xl py-2'>
             <h1 data-testid='name' className='font-bold'>{spell?.name}</h1>
-            <button data-testid='favorite' onClick={_=>dispatch(addFavorite(spell))}><FaHeart className={`${checkFavorite?'text-[#666633]':'text-white/30'} transition duration-500`}/></button>
+            <button data-testid='favorite' onClick={()=>dispatch(addFavorite(spell))}><FaHeart className={`${checkFavorite?'text-[#666633]':'text-white/30'} transition duration-500`}/></button>
         </div>
         <hr/>
         <div className='text-sm md:text-lg grid grid-cols-2 md:grid-cols-4 p-4 gap-2'>
